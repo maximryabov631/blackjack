@@ -1,6 +1,7 @@
 # blackjack
 blackjack
 
+in Client you can run it and pick either play_blackjack_without_solana or blackjack_using_solana by simply clicking on it
 
 play_blackjack_without_solana.py - is very basic, you just play with a dealer without any money. jsut to have some fun. It uses randomise so you do not have less chances to win/ dealer and you have same chances to win 
 
