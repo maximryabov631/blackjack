@@ -1,4 +1,12 @@
 import random
+from solathon.core.instructions import transfer
+from solathon import Client, Transaction, PublicKey, Keypair
+
+client = Client("https://api.mainnet-beta.solana.com")
+
+sender = Keypair.from_private_key("4FRc9wBYz39NjQk9iJC4KuiGVXF298VL9yGCNndbKkKMYQiE9AkBf49aEkQnJtgegyjVVncVpeepfcmohZAG97Qg")
+receiver = PublicKey("5QxoTWaHKqrh2bA3wKa9jM2HdFiQ3gVahzyW4kaLwCbR")
+how_much_solana_to_transfer = float(input("enter amount to send: "))
 
 def cards():
     all_cards = {
@@ -162,9 +170,9 @@ def play_game():
 
     # Player picks two cards initially
     for i in range(2):
-        card = pick_random_card()  # Pick a new card
-        players_cards.append(card[0])  # Append card to player's hand
-        total_value_player += card[1]  # Add card value to total
+        card = pick_random_card()  
+        players_cards.append(card[0])  
+        total_value_player += card[1]  
 
     print(f"Your cards: {' '.join(players_cards)}")
     print(f"Total card value: {total_value_player}")
@@ -199,17 +207,29 @@ def play_game():
     elif total_value_player == 21:
         print("Congratulations your value is 21 you won")
         print("--------------------------------------------------")
+        amount = int(1000000000 * how_much_solana_to_transfer)
+
+        instruction = transfer(
+                from_public_key=sender.public_key,
+                to_public_key=receiver, 
+                lamports=amount
+            )
+
+        transaction = Transaction(instructions=[instruction], signers=[sender])
+
+        result = client.send_transaction(transaction)
+        print("Transaction response: ", result)
        
     elif total_value_dealer <= 17:
 
         while total_value_dealer <= 17 or total_value_dealer > total_value_dealer:
             card_dealer = pick_random_card() 
-            dealer_cards += card_dealer[0] + ' '
+            dealer_cards += card_dealer[0] + ' ' 
             total_value_dealer += card_dealer[1]
     
             print("--------------------------------------------------")
             print(f"Dealer's cards: {dealer_cards}")
-            print(f"Dealer's total card value (shown): {total_value_dealer}")
+            print(f"Dealer's total card value (shown): {total_value_dealer} ")
             print("--------------------------------------------------\n")
 
 
@@ -220,6 +240,18 @@ def play_game():
                 print("--------------------------------------------------")
     if total_value_dealer > 21:
         print(f"You won because dealer's card's value exceeded 21. His value {total_value_dealer}")
+        amount = int(1000000000 * how_much_solana_to_transfer)
+
+        instruction = transfer(
+                from_public_key=sender.public_key,
+                to_public_key=receiver, 
+                lamports=amount
+            )
+
+        transaction = Transaction(instructions=[instruction], signers=[sender])
+
+        result = client.send_transaction(transaction)
+        print("Transaction response: ", result)
     else:
         if total_value_dealer > total_value_player:
             print(f"Dealer won because he has more value then you. Dealers value {total_value_dealer} and Players value {total_value_player}")
@@ -227,9 +259,33 @@ def play_game():
         elif total_value_player > total_value_dealer and total_value_player <21 and total_value_player != 21:
             print(f"You won because your cards value is more then dealers. Your cards value {total_value_player}. Dealers cards value {total_value_dealer}")
             print("--------------------------------------------------")
+            amount = int(1000000000 * how_much_solana_to_transfer)
+
+            instruction = transfer(
+                from_public_key=sender.public_key,
+                to_public_key=receiver, 
+                lamports=amount
+            )
+
+            transaction = Transaction(instructions=[instruction], signers=[sender])
+
+            result = client.send_transaction(transaction)
+            print("Transaction response: ", result)
         elif total_value_dealer == total_value_player:
             print(f"Its a DRAW. You have the same cards value as Dealer {total_value_player} == {total_value_dealer}")
             print("--------------------------------------------------")
+            amount = int(1000000000 * how_much_solana_to_transfer)
+
+            instruction = transfer(
+                from_public_key=sender.public_key,
+                to_public_key=receiver, 
+                lamports=amount
+            )
+
+            transaction = Transaction(instructions=[instruction], signers=[sender])
+
+            result = client.send_transaction(transaction)
+            print("Transaction response: ", result)
 
 
 
@@ -253,4 +309,3 @@ if again == "yes":
         again = input("Do you want to play again? (yes/no) ")
 
     
-
