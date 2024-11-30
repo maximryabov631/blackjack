@@ -7,8 +7,8 @@ from solathon import Client, Transaction, PublicKey, Keypair
 
 client = Client("https://api.mainnet-beta.solana.com")
 
-players_wallet = Keypair.from_private_key("4FRc9wBYz39NjQk9iJC4KuiGVXF298VL9yGCNndbKkKMYQiE9AkBf49aEkQnJtgegyjVVncVpeepfcmohZAG97Qg")
-dealers_wallet = Keypair.from_private_key("5FYNTFWB44uUR5abgVghkve9gqn9tAUxgGDvTwnkMWwcXNPBgUHBHkkQocEu2JnPpMXnErWwfE2oZgmpuGsgQfK5")
+players_wallet = Keypair.from_private_key("paste here players private key") # read it 
+dealers_wallet = Keypair.from_private_key("paste here dealers private key") # read it 
 receiver_1 = dealers_wallet.public_key
 receiver_2 = players_wallet.public_key
 
