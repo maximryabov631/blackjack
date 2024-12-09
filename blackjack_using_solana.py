@@ -7,10 +7,43 @@ from solathon import Client, Transaction, PublicKey, Keypair
 
 client = Client("https://api.mainnet-beta.solana.com")
 
-players_wallet = Keypair.from_private_key("paste here players private key") # read it 
-dealers_wallet = Keypair.from_private_key("paste here dealers private key") # read it 
+players_wallet = Keypair.from_private_key("39dn1AyG8CWhtGCR69oXVgW4eZ7H1yoWKCDzQ8fjocDMq1icHTxvcqBrX5bY8XHmgN8tQDPqgsrmZzh2XmhENsNG") # read it 
+dealers_wallet = Keypair.from_private_key("47unjKEy3stubhVrPKpxihZr5gUeFY6j4n3sCf2V6ynBKB1VddDbPSihfF3poHYCtb6FKSiuCeoZNAf1YrtfpETi") # read it 
 receiver_1 = dealers_wallet.public_key
 receiver_2 = players_wallet.public_key
+
+
+
+def display_card(rank, suit):
+    """Returns a card as a list of strings for side-by-side display."""
+    card = [
+        f"┌─────────┐",
+        f"│{rank:<2}       │",
+        f"│         │",
+        f"│         │",
+        f"│    {suit}    │",
+        f"│         │",
+        f"│         │",
+        f"│       {rank:>2}│",
+        f"└─────────┘"
+    ]
+    return card
+
+def display_three_cards(rank, suit):
+    """Displays three cards side by side."""
+    card = display_card(rank, suit)
+    # Print cards side by side
+    for line in card:
+        print(line * 3)
+
+def display_welcome():
+    """Displays the welcome message and the initial cards."""
+    print("Welcome to Blackjack!")
+    print()
+    display_three_cards("7", "♠")
+
+if __name__ == "__main__":
+    display_welcome()
 
 
 def cards():
