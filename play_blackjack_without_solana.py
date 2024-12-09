@@ -1,6 +1,38 @@
 import random
 
 
+def display_card(rank, suit):
+    """Returns a card as a list of strings for side-by-side display."""
+    card = [
+        f"┌─────────┐",
+        f"│{rank:<2}       │",
+        f"│         │",
+        f"│         │",
+        f"│    {suit}    │",
+        f"│         │",
+        f"│         │",
+        f"│       {rank:>2}│",
+        f"└─────────┘"
+    ]
+    return card
+
+def display_three_cards(rank, suit):
+    """Displays three cards side by side."""
+    card = display_card(rank, suit)
+    # Print cards side by side
+    for line in card:
+        print(line * 3)
+
+def display_welcome():
+    """Displays the welcome message and the initial cards."""
+    print("Welcome to Blackjack!")
+    print()
+    display_three_cards("7", "♠")
+
+if __name__ == "__main__":
+    display_welcome()
+
+
 def cards():
     all_cards = {
         """
