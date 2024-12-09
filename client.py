@@ -1,17 +1,18 @@
 import tkinter as tk
 import subprocess
+import sys
 
 def run_blackjack_with_solana():
-    subprocess.Popen(["python", "blackjack_using_solana.py"])
+    subprocess.Popen([sys.executable, "blackjack_using_solana.py"])
 
 def run_blackjack_without_solana():
-    subprocess.Popen(["python", "play_blackjack_without_solana.py"])
+    subprocess.Popen([sys.executable, "play_blackjack_without_solana.py"])
 
-# main window that shopws up
+
 root = tk.Tk()
 root.title("Blackjack Client")
 
-# Create buttons
+#buttons
 btn_with_solana = tk.Button(root, text="Play Blackjack Using Solana", command=run_blackjack_with_solana, width=30, height=2)
 btn_with_solana.pack(pady=10)
 
